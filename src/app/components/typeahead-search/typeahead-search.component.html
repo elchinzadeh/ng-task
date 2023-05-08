@@ -1,0 +1,18 @@
+<div class="typeahead-search">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search..." aria-label="Search"
+            aria-describedby="Serch input" [attr.aria-expanded]="dropdownOpen" aria-haspopup="true" list="searchResults"
+            [formControl]="searchText" id="searchInput">
+        <select class="form-select" aria-label="Category" [formControl]="category">
+            <option selected value="">Any category</option>
+            <option *ngFor="let category of categories" [value]="category.key">{{category.title}}</option>
+        </select>
+        <button class="btn btn-dark" type="button" (click)="search()">Search</button>
+    </div>
+    <datalist id="searchResults" class="list-group" *ngIf="dropdownOpen">
+        <button type="button" class="list-group-item list-group-item-action" *ngFor="let result of searchResults"
+            (click)="searchResultOnClick(result)">
+            <b>{{ result.brand }}</b> {{ result.title }}
+        </button>
+    </datalist>
+</div>
